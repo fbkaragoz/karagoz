@@ -39,8 +39,8 @@ export default function HomePage() {
     },
   ];
 
-  // Featured projects'i otomatik olarak çek (ilk 3 tane)
-  const featuredProjects = getFeaturedProjects(3);
+  // Featured projects'i otomatik olarak çek (ilk 4 tane)
+  const featuredProjects = getFeaturedProjects(4);
 
   const techStack = [
     { icon: <SiPython />, name: 'Python', color: '#3776ab' },
@@ -344,7 +344,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {featuredProjects.map((project, index) => (
                 <ScrollReveal key={project.id} delay={index * 0.1}>
                   <motion.div

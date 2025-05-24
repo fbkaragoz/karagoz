@@ -70,6 +70,16 @@ export const metadata: Metadata = {
   other: {
     'google-site-verification': 'your-google-verification-code',
   },
+  icons: {
+    icon: [
+      { url: '/karagoz.png', sizes: '32x32', type: 'image/png' },
+      { url: '/karagoz.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/cdliai.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/karagoz.png',
+  },
 };
 
 export default function RootLayout({
@@ -169,10 +179,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/cdliai.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/cdliai.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/cdliai.png" />
+        <link rel="icon" href="/karagoz.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/cdliai.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/karagoz.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/karagoz.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#0891b2" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

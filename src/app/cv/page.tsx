@@ -2,12 +2,12 @@
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { FiDownload, FiMail, FiLinkedin, FiGithub, FiCalendar, FiExternalLink } from 'react-icons/fi';
-import { FaBrain, FaNetworkWired } from 'react-icons/fa';
-import { SiPython, SiReact, SiHuggingface } from 'react-icons/si';
+import { SiHuggingface } from 'react-icons/si';
 import { useRef, useState } from 'react';
 import ParticleBackground from '@/components/ParticleBackground';
 import ScrollReveal from '@/components/ScrollReveal';
 import MagneticButton from '@/components/MagneticButton';
+import ProjectIcon from '@/components/ProjectIcon';
 import Link from 'next/link';
 
 // Timeline Data Type
@@ -244,7 +244,7 @@ export default function CVPage() {
       period: "2024 - Present",
       description: "Applied AGI initiative building cognitive infrastructure and intelligent systems.",
       technologies: ["Neural Networks", "AGI Research", "Robotics", "Deep Learning", "Computer Vision"],
-      icon: <FaBrain />,
+      icon: <ProjectIcon iconName="cdliai" />,
       color: "from-cyan-500 to-blue-500"
     },
     {
@@ -255,7 +255,7 @@ export default function CVPage() {
       period: "2025 - Present",
       description: "LLM-powered query optimization and prompt rewriting infrastructure.",
       technologies: ["LangChain", "Next.js", "LLM", "TypeScript", "OpenAI"],
-      icon: <SiReact />,
+      icon: <ProjectIcon iconName="better_query" />,
       color: "from-purple-500 to-pink-500"
     },
     {
@@ -266,7 +266,7 @@ export default function CVPage() {
       period: "2024 - Present", 
       description: "Plant breeding optimization platform using NGS pipelines and ML systems.",
       technologies: ["Python", "ML", "Genomics", "Bioinformatics", "AWS"],
-      icon: <FaNetworkWired />,
+      icon: <ProjectIcon iconName="botanera" />,
       color: "from-green-500 to-emerald-500"
     },
     {
@@ -277,7 +277,7 @@ export default function CVPage() {
       period: "2023 - 2024",
       description: "Built corpora and tokenization tools for historical Turkish NLP.",
       technologies: ["BERT", "NLP", "PyTorch", "Transformers", "Turkish"],
-      icon: <SiPython />,
+      icon: <ProjectIcon iconName="ottominer" />,
       color: "from-orange-500 to-red-500"
     },
     {
@@ -288,7 +288,7 @@ export default function CVPage() {
       period: "2021 - 2025",
       description: "Focus on Logic, Philosophy of Mind, and Computer Science.",
       technologies: ["Logic", "AI Ethics", "Statistics", "Philosophy", "Research"],
-      icon: <FaBrain />,
+      icon: <ProjectIcon iconName="boun" />,
       color: "from-blue-500 to-purple-500"
     }
   ];

@@ -12,7 +12,7 @@ export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredProjects = getProjectsByCategory(selectedCategory);
-  const featuredProjects = getFeaturedProjects();
+  const featuredProjects = getFeaturedProjects(4);
 
   const containerVariants = {
     hidden: { opacity: 0 },
