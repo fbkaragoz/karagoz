@@ -10,8 +10,8 @@ export default function FuturisticFooter() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { name: 'GitHub', href: 'https://github.com/rekurrenzk', icon: <FaGithub /> },
-    { name: 'LinkedIn', href: 'https://linkedin.com/in/rekurrenzk', icon: <FaLinkedin /> },
+    { name: 'GitHub', href: 'https://github.com/fbkaragoz', icon: <FaGithub /> },
+    { name: 'LinkedIn', href: 'https://linkedin.com/in/karagoz', icon: <FaLinkedin /> },
     { name: 'Twitter', href: 'https://twitter.com/0xcdli', icon: <FaTwitter /> },
     { name: 'Email', href: 'mailto:fatihburak@pm.me', icon: <FaEnvelope /> },
   ];

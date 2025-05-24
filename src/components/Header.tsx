@@ -204,9 +204,7 @@ const FuturisticHeader = () => {
             </motion.div>
 
             {/* Enhanced Mobile Menu Button */}
-            <div className="md:hidden flex items-center space-x-3">
-              <LanguageToggle />
-              
+            <div className="md:hidden flex items-center">
               <motion.button
                 onClick={toggleMenu}
                 className="p-3 rounded-lg text-gray-300 hover:text-cyan-400 focus:outline-none transition-all duration-300 relative overflow-hidden group"
@@ -273,6 +271,19 @@ const FuturisticHeader = () => {
                       </Link>
                     </motion.div>
                   ))}
+                  
+                  {/* Language Toggle in Mobile Menu */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navItems.length * 0.1 }}
+                    className="px-4 pt-4 border-t border-gray-700/50"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-400 text-sm">Language</span>
+                      <LanguageToggle />
+                    </div>
+                  </motion.div>
                 </div>
               </nav>
             </motion.div>

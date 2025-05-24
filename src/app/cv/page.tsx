@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { FiDownload, FiMail, FiMapPin, FiLinkedin, FiGithub, FiCalendar, FiExternalLink } from 'react-icons/fi';
 import { FaBrain, FaNetworkWired } from 'react-icons/fa';
-import { SiPython, SiReact } from 'react-icons/si';
+import { SiPython, SiReact, SiHuggingface } from 'react-icons/si';
 import { useRef, useState } from 'react';
 import ParticleBackground from '@/components/ParticleBackground';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -231,11 +231,12 @@ export default function CVPage() {
     subtitle: "Bridging Intelligence & Consciousness",
     email: "fatihburak@pm.me",
     phone: "+90 537 380 35 28",
-    location: "Istanbul, Turkey",
+    location: "Istanbul",
     website: "https://karagoz.io",
     linkedin: "https://linkedin.com/in/karagoz",
     github: "https://github.com/fbkaragoz",
-    scholar: "https://scholar.google.com/citations?hl=en&user=EN-7bekAAAAJ"
+    scholar: "https://scholar.google.com/citations?hl=en&user=EN-7bekAAAAJ",
+    huggingface: "https://huggingface.co/fatihburakkaragoz"
   };
 
   const timelineData: TimelineItem[] = [
@@ -359,7 +360,7 @@ export default function CVPage() {
 
               {/* Contact Info Grid */}
               <motion.div
-                className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12"
+                className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.8 }}
@@ -369,6 +370,7 @@ export default function CVPage() {
                   { icon: <FiMapPin />, text: personalInfo.location },
                   { icon: <FiLinkedin />, text: "LinkedIn", href: personalInfo.linkedin },
                   { icon: <FiGithub />, text: "GitHub", href: personalInfo.github },
+                  { icon: <SiHuggingface />, text: "HuggingFace", href: personalInfo.huggingface },
                   { icon: <FiExternalLink />, text: "Scholar", href: personalInfo.scholar }
                 ].map((item, index) => (
                   <motion.div
