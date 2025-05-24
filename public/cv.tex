@@ -1,0 +1,382 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Fatih Burak Karagöz - Curriculum Vitae},
+    pdfauthor={Fatih Burak Karagöz},
+    pdfcreator={LaTeX with RenderCV},
+    pdfsubject={Artificial Intelligence, Robotics, NLP, Philosophy of Mind},
+    pdfkeywords={AI, NLP, Robotics, Ottoman Turkish, Neurophilosophy, LLM, Prompt Engineering, AGI},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{fontawesome}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\pagenumbering{gobble} % no page numbering
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0 cm + 0.00001 cm
+    }{
+        0 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for three column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in July 2024}\hspace{\widthof{Last updated in July 2024}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{25 pt}{25 pt}\selectfont Fatih Burak Karagöz
+
+        \vspace{5 pt}
+
+        \normalsize
+        \mbox{Istanbul}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{fatihburak@pm.me}{fatihburak@pm.me}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{tel:+90-537-380-35-28}{+90 5373803528}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/karagoz/}{linkedin.com/karagoz}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://github.com/rekurrenzk}{https://github.com/fbkaragoz}}%
+    \end{header}
+
+    \vspace{5 pt - 0.3 cm}
+    
+\section{Education}
+
+\begin{onecolentry}
+    \textbf{Boğaziçi University} — Philosophy (B.A.) \hfill \textit{Jan 2021 – Jun 2025} \\
+    Relevant Coursework: Logic, Philosophy of Mind, NLP, Interactivism, Computer Science, Statistics
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{Boğaziçi University} — Turkish Language and Literature (B.A.) \hfill \textit{Sept 2018 – Jan 2021} \\
+    \textit{GPA: 3.58/4.00} \\
+    Relevant Coursework: Linguistics, Ottoman Turkish, Literary Theory, Textual Analysis
+\end{onecolentry}
+
+\section{Presentations}
+
+\begin{onecolentry}
+    \textbf{Bisiklet Adası} — TURING Foundation, Istanbul \hfill \textit{Feb 2024} \\
+    Shared insights from a 15,000 km solo cycling journey from the Balkans to Finland, focusing on embodied mobility and urban culture. \\
+    \href{https://www.youtube.com/watch?v=U6dBbAe17cE&t=1s}{YouTube: Bicycle Island}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{Retorik Nedir?} — TURING Foundation, Istanbul \hfill \textit{Jan 2020} \\
+    Presented an analysis of rhetorical theory from antiquity to postmodernity. \\
+    \href{https://www.youtube.com/watch?v=Uji9Ntt8QOs&t=1s}{YouTube: What is Rhetoric?}
+\end{onecolentry}
+
+\section{Publications}
+
+\begin{onecolentry}
+    \textbf{Building Foundations for NLP of Historical Turkish: Resources and Models} \\
+    \textit{Co-authored preprint — Jan 2025} \\
+    Provides key resources for Ottoman Turkish NLP, including annotated corpora and benchmark models. \\
+    \href{https://arxiv.org/abs/2501.04828}{arxiv.org/abs/2501.04828}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{Towards a Clean Text Corpus for Ottoman Turkish} \\
+    \textit{ACL SIGTURK, Bangkok — Jul 2024} \\
+    Co-authored corpus study for historical Turkish texts with novel normalization methods and linguistic metadata. \\
+    \href{https://aclanthology.org/2024.sigturk-1.0.pdf}{aclanthology.org/2024.sigturk-1.0.pdf}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{Theory of Differentialism} \\
+    \textit{Independent Study — May 2024, with Lucas Thorpe} \\
+    Investigates change and cognition through a new philosophical framework combining epistemology and symbolic logic. \\
+    \href{https://doi.org/10.13140/RG.2.2.28148.97926}{DOI: 10.13140/RG.2.2.28148.97926}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{On the Edge of Cognitive Revolution: The Impact of Neuro-Robotics on Mind and Singularity} \\
+    \textit{ISBCS Conference, Özyeğin University — Apr 2023} \\
+    Explores the epistemological implications of neuro-robotic systems and their relation to AI singularity. \\
+    \href{https://philarchive.org/rec/KAROTE-5}{philarchive.org/rec/KAROTE-5}
+\end{onecolentry}
+
+
+\section{Ventures \& Founding Initiatives}
+\begin{onecolentry}
+    \textbf{BetterQuery} \hfill \href{https://github.com/betterquery}{github.com/betterquery} \\
+    \textit{2025–ongoing. Founder. LLM-powered query optimization and prompt rewriting infrastructure. Built with Next.js, Tailwind, and LangChain.}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{Q-Oracle} \hfill \href{https://github.com/rekurrenzk}{github.com/rekurrenzk} \\
+    \textit{2025–ongoing. Founder. Market intelligence system with real-time scraping, price tracking, and insight generation via vector embeddings and ML-based classification.}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{CDLI.ai} \hfill \href{https://cdli.ai}{cdli.ai} \\
+    \textit{2024–ongoing. Founder. Applied AGI initiative building cognitive infrastructure, robotics, and intelligent systems. Operating in stealth toward neuro-symbolic integration.}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{Botanera Genomics} \hfill \href{https://github.com/rekurrenzk/DiscordBot}{github.com/cdliproject} \\
+    \textit{2024-ongoing. Co-founder. Plant breeding optimization platform using NGS pipelines and decision making systems.}
+\end{onecolentry}
+
+
+\section{Selected Projects \& Engineering Work}
+
+\begin{onecolentry}
+    \textbf{Ottoman NLP Project} \hfill \href{https://github.com/Ottoman-NLP}{github.com/Ottoman-NLP} \\
+    \textit{2023-2024. Contributor. Built corpora, lexicons, and tokenization tools for historical Turkish NLP. Published at ACL SIGTURK 2024.}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{Corpus Engineering Tools (Ottoman)} \\
+    \textit{2023–2024. Built command-line tools for cleaning, transliteration, and structure analysis of Ottoman Turkish texts using regex, YAML metadata, and custom tokenizers.}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{NER-dsai} \hfill \href{https://github.com/rekurrenzk/NER-dsai}{github.com/rekurrenzk/NER-dsai} \\
+    \textit{2024. Developed BERT-based NER system for Ottoman Turkish. Includes full pipeline: training, evaluation, performance visualization.}
+\end{onecolentry}
+\vspace{0.2cm}
+
+\begin{onecolentry}
+    \textbf{Personal Assistant} \hfill \href{https://github.com/rekurrenzk}{github.com/rekurrenzk} \\
+    \textit{2023. Local GPT-powered server assistant with encryption, modular routing, and command handling. Built in Python.}
+\end{onecolentry}
+
+
+\section{Extracurricular \& Personal Milestones}
+
+\begin{onecolentry}
+    \textbf{TURING Foundation Scholar (2018–2024)} \hfill \href{https://turing.org.tr/}{\faLink\,turing.org.tr} \\
+    Selected for a nationally prestigious scholarship supporting high-potential students in the humanities and science.
+\end{onecolentry}
+\vspace{0.15cm}
+
+\begin{onecolentry}
+    \textbf{T3 NLP Engineering Volunteer (Feb 2025)} \\
+    Selected for the NLP unit of the AI Engineering Program at T3 Foundation.
+\end{onecolentry}
+\vspace{0.15cm}
+
+\begin{onecolentry}
+    \textbf{Martial Arts Training (2019–2023)} \\
+    MMA (Trainer: Igor Kryvoruchko), Brazilian Jiu-Jitsu. Practiced in Eastern Europe and Türkiye.
+\end{onecolentry}
+\vspace{0.15cm}
+
+\section{Programs \& Advanced Courses}
+
+\begin{onecolentry}
+    \textbf{Neuromatch Academy: Deep Learning Track (Summer 2025)} \hfill \small\textcolor{gray}{\href{https://academy.neuromatch.io/}{neuromatch.io}} \\
+    Enrolled student in 2025 cohort. Intensive global program focused on applied deep learning, neural computation, and model interpretability.
+\end{onecolentry}
+\vspace{0.15cm}
+
+\begin{onecolentry}
+    \textbf{Philosophy Summer Camps (2023–2024)} \\
+    Participant at \href{https://archeprojesi.com/}{Arkhe} and \href{https://www.gumuslukakademisi.org/en}{Gümüşlük Academy} with seminars on philosophy, technology, and social theories.
+\end{onecolentry}
+
+\section{Licenses and Certifications}
+
+    \begin{onecolentry}
+        \textbf{Standford University:} Machine Learning
+    \end{onecolentry}
+    \vspace{0.2 cm}
+
+    \begin{onecolentry}
+        \textbf{University of Washington:} Computational Neuroscience
+    \end{onecolentry}
+    \vspace{0.2 cm}
+
+    \begin{onecolentry}
+        \textbf{DeepLearning.AI:} Neural Networks and Deep Learning
+    \end{onecolentry}
+    \vspace{0.2 cm}
+
+    \begin{onecolentry}
+        \textbf{IBM:} Deep Learning, Data Science, DevOps
+    \end{onecolentry}
+    
+    \vspace{0.2 cm}
+
+    \begin{onecolentry}
+        \textbf{Cyber Clubs Association - Summer School:} Linux Kernel, Bash Scripting
+    \end{onecolentry}
+    \vspace{0.2 cm}
+
+    \begin{onecolentry}
+        \textbf{Neuro-Symbolic AI Summer School:} Symbolic-AI Research Community Event
+    \end{onecolentry}
+    \vspace{0.2 cm}
+
+\end{document}
