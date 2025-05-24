@@ -1,13 +1,14 @@
 "use client";
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { FiDownload, FiMail, FiMapPin, FiLinkedin, FiGithub, FiCalendar, FiExternalLink } from 'react-icons/fi';
+import { FiDownload, FiMail, FiLinkedin, FiGithub, FiCalendar, FiExternalLink } from 'react-icons/fi';
 import { FaBrain, FaNetworkWired } from 'react-icons/fa';
 import { SiPython, SiReact, SiHuggingface } from 'react-icons/si';
 import { useRef, useState } from 'react';
 import ParticleBackground from '@/components/ParticleBackground';
 import ScrollReveal from '@/components/ScrollReveal';
 import MagneticButton from '@/components/MagneticButton';
+import Link from 'next/link';
 
 // Timeline Data Type
 interface TimelineItem {
@@ -166,15 +167,10 @@ const TimelineCard: React.FC<TimelineCardProps> = ({ item, index, activeItem, se
             </div>
             
             {/* Compact Meta Information */}
-            <div className="flex items-center text-gray-500 text-xs mb-3 space-x-3">
+            <div className="flex items-center text-gray-500 text-xs mb-3">
               <div className="flex items-center">
                 <FiCalendar className="mr-1.5 text-cyan-400/70" />
                 <span>{item.period}</span>
-              </div>
-              <div className="text-gray-600">•</div>
-              <div className="flex items-center">
-                <FiMapPin className="mr-1.5 text-cyan-400/70" />
-                <span>{item.location}</span>
               </div>
             </div>
             
@@ -244,7 +240,7 @@ export default function CVPage() {
       type: "experience",
       title: "Founder & AI Researcher",
       company: "CDLI.ai",
-      location: "Istanbul",
+      location: "",
       period: "2024 - Present",
       description: "Applied AGI initiative building cognitive infrastructure and intelligent systems.",
       technologies: ["Neural Networks", "AGI Research", "Robotics", "Deep Learning", "Computer Vision"],
@@ -255,7 +251,7 @@ export default function CVPage() {
       type: "experience",
       title: "Founder",
       company: "BetterQuery",
-      location: "Istanbul", 
+      location: "", 
       period: "2025 - Present",
       description: "LLM-powered query optimization and prompt rewriting infrastructure.",
       technologies: ["LangChain", "Next.js", "LLM", "TypeScript", "OpenAI"],
@@ -266,7 +262,7 @@ export default function CVPage() {
       type: "experience",
       title: "Co-founder",
       company: "Botanera Genomics",
-      location: "Istanbul",
+      location: "",
       period: "2024 - Present", 
       description: "Plant breeding optimization platform using NGS pipelines and ML systems.",
       technologies: ["Python", "ML", "Genomics", "Bioinformatics", "AWS"],
@@ -277,7 +273,7 @@ export default function CVPage() {
       type: "experience",
       title: "NLP Research Contributor",
       company: "Ottoman NLP Project",
-      location: "Remote",
+      location: "",
       period: "2023 - 2024",
       description: "Built corpora and tokenization tools for historical Turkish NLP.",
       technologies: ["BERT", "NLP", "PyTorch", "Transformers", "Turkish"],
@@ -288,7 +284,7 @@ export default function CVPage() {
       type: "education",
       title: "Bachelor of Arts in Philosophy",
       company: "Boğaziçi University",
-      location: "Istanbul",
+      location: "",
       period: "2021 - 2025",
       description: "Focus on Logic, Philosophy of Mind, and Computer Science.",
       technologies: ["Logic", "AI Ethics", "Statistics", "Philosophy", "Research"],
@@ -332,11 +328,7 @@ export default function CVPage() {
                     ease: 'easeInOut',
                   }}
                 >
-                  <span className="bg-gradient-to-r from-white via-cyan-400 to-white bg-clip-text text-transparent">
-                    Neural
-                  </span>
-                  <br />
-                  <span className="text-cyan-400">Curriculum</span>
+                  <span className="text-cyan-400">Neural Curriculum</span>
                 </motion.h1>
                 
                 <motion.div
@@ -356,18 +348,44 @@ export default function CVPage() {
                 >
                   {personalInfo.subtitle}
                 </motion.div>
+                
+                {/* Internal Links */}
+                <motion.div
+                  className="flex flex-wrap justify-center gap-4 mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                >
+                  <Link 
+                    href="/projects" 
+                    className="px-4 py-2 bg-gray-800/50 text-cyan-400 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 text-sm"
+                  >
+                    AI Projects →
+                  </Link>
+                  <Link 
+                    href="/blog" 
+                    className="px-4 py-2 bg-gray-800/50 text-cyan-400 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 text-sm"
+                  >
+                    Technology Blog →
+                  </Link>
+                  <Link 
+                    href="/contact" 
+                    className="px-4 py-2 bg-gray-800/50 text-cyan-400 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 text-sm"
+                  >
+                    Contact →
+                  </Link>
+                </motion.div>
               </motion.div>
 
               {/* Contact Info Grid */}
               <motion.div
-                className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12"
+                className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.8 }}
               >
                 {[
                   { icon: <FiMail />, text: personalInfo.email, href: `mailto:${personalInfo.email}` },
-                  { icon: <FiMapPin />, text: personalInfo.location },
                   { icon: <FiLinkedin />, text: "LinkedIn", href: personalInfo.linkedin },
                   { icon: <FiGithub />, text: "GitHub", href: personalInfo.github },
                   { icon: <SiHuggingface />, text: "HuggingFace", href: personalInfo.huggingface },
@@ -375,21 +393,68 @@ export default function CVPage() {
                 ].map((item, index) => (
                   <motion.div
                     key={index}
-                    className="group p-3 rounded-lg bg-gradient-to-br from-gray-900/60 to-gray-800/40 border border-gray-700/50 backdrop-blur-sm hover:border-cyan-500/60 transition-all duration-300"
                     whileHover={{ y: -3, scale: 1.02 }}
                   >
-                    <div className="text-cyan-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                      {item.icon}
-                    </div>
-                    <div className="text-gray-300 text-sm group-hover:text-cyan-400 transition-colors">
-                      {item.href ? (
-                        <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group p-3 rounded-lg bg-gradient-to-br from-gray-900/60 to-gray-800/40 border border-gray-700/50 backdrop-blur-sm hover:border-cyan-500/60 transition-all duration-300 relative overflow-hidden block"
+                      >
+                        {/* Rainbow glow effect on hover */}
+                        <motion.div
+                          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                          style={{
+                            background: 'linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #9370db, #ff1493, #00ff7f)',
+                            backgroundSize: '400% 400%',
+                            filter: 'blur(8px)',
+                            zIndex: -1,
+                          }}
+                          animate={{
+                            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                          }}
+                        />
+                        
+                        <motion.div 
+                          className="text-cyan-400 text-xl mb-2 group-hover:scale-110 transition-transform relative z-10"
+                          whileHover={{
+                            filter: [
+                              'hue-rotate(0deg)',
+                              'hue-rotate(90deg)',
+                              'hue-rotate(180deg)',
+                              'hue-rotate(270deg)',
+                              'hue-rotate(360deg)',
+                            ],
+                          }}
+                          transition={{
+                            duration: 1,
+                            ease: 'easeInOut',
+                          }}
+                        >
+                          {item.icon}
+                        </motion.div>
+                        <div className="text-gray-300 text-sm group-hover:text-cyan-400 transition-colors relative z-10">
                           {item.text}
-                        </a>
-                      ) : (
-                        item.text
-                      )}
-                    </div>
+                        </div>
+                      </a>
+                    ) : (
+                      <div className="group p-3 rounded-lg bg-gradient-to-br from-gray-900/60 to-gray-800/40 border border-gray-700/50 backdrop-blur-sm transition-all duration-300 relative overflow-hidden">
+                        <motion.div 
+                          className="text-cyan-400 text-xl mb-2 transition-transform relative z-10"
+                        >
+                          {item.icon}
+                        </motion.div>
+                        <div className="text-gray-300 text-sm relative z-10">
+                          {item.text}
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </motion.div>
@@ -446,7 +511,7 @@ export default function CVPage() {
                 ease: 'easeInOut',
               }}
             >
-              Neural <span className="text-cyan-400">Timeline</span>
+              Professional <span className="text-cyan-400">Experience and Education</span>
             </motion.h2>
 
             <div className="relative max-w-5xl mx-auto">

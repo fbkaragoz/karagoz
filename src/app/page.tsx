@@ -94,6 +94,16 @@ export default function HomePage() {
           <div className="text-center max-w-5xl mx-auto">
             <ScrollReveal>
               <motion.div className="mb-12">
+                <motion.h1
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center"
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                >
+                  <span className="bg-gradient-to-r from-white via-cyan-400 to-white bg-clip-text text-transparent">
+                    Fatih Burak Karagöz
+                  </span>
+                </motion.h1>
                 <AnimatedTitle />
                 <motion.div
                   className="text-lg md:text-xl text-gray-400 font-light mb-8 tracking-wide"
@@ -101,7 +111,7 @@ export default function HomePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.8 }}
                 >
-                  Fatih Burak Karagöz
+                  AI Developer, Philosopher & AGI Architect
                 </motion.div>
               </motion.div>
             </ScrollReveal>

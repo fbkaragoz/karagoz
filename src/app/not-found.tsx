@@ -180,7 +180,7 @@ export default function NotFound() {
         {/* Action Buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8"
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -246,6 +246,31 @@ export default function NotFound() {
               Go Back
             </button>
           </motion.div>
+        </motion.div>
+
+        {/* Additional Navigation Links */}
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-wrap justify-center gap-4 mb-8"
+        >
+          <Link 
+            href="/projects" 
+            className="px-4 py-2 bg-gray-800/50 text-cyan-400 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 text-sm"
+          >
+            AI Projects
+          </Link>
+          <Link 
+            href="/cv" 
+            className="px-4 py-2 bg-gray-800/50 text-cyan-400 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 text-sm"
+          >
+            My CV
+          </Link>
+          <Link 
+            href="/contact" 
+            className="px-4 py-2 bg-gray-800/50 text-cyan-400 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 text-sm"
+          >
+            Contact
+          </Link>
         </motion.div>
 
         {/* Additional Info */}

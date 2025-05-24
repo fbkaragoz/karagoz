@@ -16,7 +16,7 @@ export default function MagneticButton({
   strength = 0.3,
   range = 100,
 }: MagneticButtonProps) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -24,7 +24,7 @@ export default function MagneticButton({
   const springX = useSpring(x, { stiffness: 300, damping: 30 });
   const springY = useSpring(y, { stiffness: 300, damping: 30 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
@@ -48,7 +48,7 @@ export default function MagneticButton({
   };
 
   return (
-    <motion.button
+    <motion.div
       ref={ref}
       style={{
         x: springX,
@@ -61,6 +61,6 @@ export default function MagneticButton({
       className={`relative transition-all duration-300 ${className}`}
     >
       {children}
-    </motion.button>
+    </motion.div>
   );
 } 

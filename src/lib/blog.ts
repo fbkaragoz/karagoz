@@ -28,57 +28,119 @@ export interface BlogPostMeta {
   readTime: string;
 }
 
-// Mark functions that use fs as server-side only
-export async function getAllPostSlugs(): Promise<string[]> {
-  if (typeof window === 'undefined' && !fs.existsSync(postsDirectory)) {
-    return [];
+// Get posts from localStorage (admin panel)
+function getLocalStoragePosts(): BlogPost[] {
+  if (typeof window === 'undefined') return [];
+  
+  try {
+    const savedPosts = localStorage.getItem('blog_posts');
+    if (savedPosts) {
+      const posts: BlogPost[] = JSON.parse(savedPosts);
+      return posts.map((post: BlogPost) => ({
+        ...post,
+        readTime: readingTime(post.content).text
+      }));
+    }
+  } catch (error) {
+    console.error('Error reading localStorage posts:', error);
   }
   
-  const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames
-    .filter((name) => name.endsWith('.mdx'))
-    .map((name) => name.replace(/\.mdx$/, ''));
+  return [];
+}
+
+// Get posts from file system
+async function getFileSystemPosts(): Promise<BlogPost[]> {
+  if (typeof window !== 'undefined') return [];
+  
+  try {
+    if (!fs.existsSync(postsDirectory)) {
+      return [];
+    }
+    
+    const fileNames = fs.readdirSync(postsDirectory);
+    const posts = await Promise.all(
+      fileNames
+        .filter((name) => name.endsWith('.mdx'))
+        .map(async (fileName) => {
+          const slug = fileName.replace(/\.mdx$/, '');
+          const fullPath = path.join(postsDirectory, fileName);
+          const fileContents = fs.readFileSync(fullPath, 'utf8');
+          const { data, content } = matter(fileContents);
+          const stats = readingTime(content);
+          
+          return {
+            slug,
+            title: data.title || '',
+            excerpt: data.excerpt || '',
+            date: data.date || '',
+            tags: data.tags || [],
+            featured: data.featured || false,
+            author: data.author || 'Fatih Burak Karagöz',
+            readTime: stats.text,
+            content,
+          };
+        })
+    );
+    
+    return posts;
+  } catch (error) {
+    console.error('Error reading file system posts:', error);
+    return [];
+  }
+}
+
+// Mark functions that use fs as server-side only
+export async function getAllPostSlugs(): Promise<string[]> {
+  const fileSystemPosts = await getFileSystemPosts();
+  const localStoragePosts = getLocalStoragePosts();
+  
+  const allPosts = [...fileSystemPosts, ...localStoragePosts];
+  return allPosts.map(post => post.slug);
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  // First try localStorage
+  const localStoragePosts = getLocalStoragePosts();
+  const localPost = localStoragePosts.find(post => post.slug === slug);
+  if (localPost) {
+    return localPost;
+  }
+  
+  // Then try file system
   try {
     const fullPath = path.join(postsDirectory, `${slug}.mdx`);
     
-    if (typeof window === 'undefined' && !fs.existsSync(fullPath)) {
-      return null;
+    if (typeof window === 'undefined' && fs.existsSync(fullPath)) {
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data, content } = matter(fileContents);
+      const stats = readingTime(content);
+      
+      return {
+        slug,
+        title: data.title || '',
+        excerpt: data.excerpt || '',
+        date: data.date || '',
+        tags: data.tags || [],
+        featured: data.featured || false,
+        author: data.author || 'Fatih Burak Karagöz',
+        readTime: stats.text,
+        content,
+      };
     }
-    
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
-    
-    // Calculate reading time
-    const stats = readingTime(content);
-    
-    return {
-      slug,
-      title: data.title || '',
-      excerpt: data.excerpt || '',
-      date: data.date || '',
-      tags: data.tags || [],
-      featured: data.featured || false,
-      author: data.author || '',
-      readTime: data.readTime || stats.text,
-      content,
-    };
   } catch (error) {
     console.error(`Error reading post ${slug}:`, error);
-    return null;
   }
+  
+  return null;
 }
 
 export async function getAllPosts(): Promise<BlogPostMeta[]> {
-  const slugs = await getAllPostSlugs();
-  const posts = await Promise.all(
-    slugs.map(async (slug) => getPostBySlug(slug))
-  );
+  const fileSystemPosts = await getFileSystemPosts();
+  const localStoragePosts = getLocalStoragePosts();
   
-  return posts
-    .filter((post): post is BlogPost => post !== null)
+  const allPosts = [...fileSystemPosts, ...localStoragePosts];
+  
+  return allPosts
     .map((post) => ({
       slug: post.slug,
       title: post.title,

@@ -44,7 +44,7 @@ A modern, cyberpunk-themed portfolio website built with Next.js, featuring AI-fo
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/fatihburakkaragoz/karagoz.git
+   git clone https://github.com/fbkaragoz/karagoz.git
    cd karagoz
    ```
 
@@ -176,12 +176,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Fatih Burak Karagöz**
 - AI Developer & Full-Stack Engineer
 - Email: fatih@karagoz.io
-- LinkedIn: [fatihburakkaragoz](https://linkedin.com/in/fatihburakkaragoz)
-- GitHub: [fatihburakkaragoz](https://github.com/fatihburakkaragoz)
+- LinkedIn: [fatihburakkaragoz](https://linkedin.com/in/karagoz)
+- GitHub: [fatihburakkaragoz](https://github.com/fbkaragoz)
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/fatihburakkaragoz/karagoz/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/fbkaragoz/karagoz/issues).
 
 ## ⭐ Show Your Support
 

@@ -12,29 +12,29 @@ export default function ContactPage() {
     {
       icon: <FiMail />,
       title: 'Email',
-      value: 'fatih@karagoz.io',
-      href: 'mailto:fatih@karagoz.io',
+      value: 'fatihburak@pm.me',
+      href: 'mailto:fatihburak@pm.me',
       color: 'from-cyan-500 to-blue-500'
     },
     {
       icon: <FiGithub />,
       title: 'GitHub',
-      value: '@fatihkaragoz',
-      href: 'https://github.com/fatihkaragoz',
+      value: '@fbkaragoz',
+      href: 'https://github.com/fbkaragoz',
       color: 'from-gray-500 to-gray-700'
     },
     {
       icon: <FiLinkedin />,
       title: 'LinkedIn',
       value: 'Fatih Burak Karagöz',
-      href: 'https://linkedin.com/in/fatihkaragoz',
+      href: 'https://linkedin.com/in/karagoz',
       color: 'from-blue-600 to-blue-800'
     },
     {
       icon: <FiTwitter />,
       title: 'Twitter',
-      value: '@fatihkaragoz',
-      href: 'https://twitter.com/fatihkaragoz',
+      value: '@0xcdli',
+      href: 'https://twitter.com/0xcdli',
       color: 'from-sky-400 to-sky-600'
     }
   ];
